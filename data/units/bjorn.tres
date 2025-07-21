@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://ce6lyd4ax8lvr"]
+
+[ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_d6p4t"]
+
+[resource]
+script = ExtResource("1_d6p4t")
+name = "Bjorn"
+rarity = 0
+gold_cost = 1
+skin_coordinates = Vector2i(1, 3)
+metadata/_custom_type_script = "uid://bv4ydxsmt4q1"

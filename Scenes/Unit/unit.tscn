@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://3du40dybxgmb"]
+
+[ext_resource type="Script" uid="uid://dibr2uo1u2lnu" path="res://Scripts/unit.gd" id="1_15sed"]
+[ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_hgpyh"]
+[ext_resource type="Resource" uid="uid://ce6lyd4ax8lvr" path="res://data/units/bjorn.tres" id="2_ladk0"]
+[ext_resource type="Material" uid="uid://bb8m5fhpi4wqn" path="res://assets/shaders/2d_outline_shader.tres" id="3_jbdwb"]
+[ext_resource type="Script" uid="uid://fqg1orciff4p" path="res://components/drag_and_drop.gd" id="4_iuf4a"]
+[ext_resource type="Script" uid="uid://bjuu7p0lc5hwx" path="res://components/velocity_based_rotation.gd" id="5_ulevp"]
+[ext_resource type="Script" uid="uid://7mo3sm2kl50p" path="res://components/outline_highlighter.gd" id="7_kakeo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgpyh"]
+size = Vector2(36, 36)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ladk0"]
+bg_color = Color(0.275916, 0.0266921, 2.40654e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuf4a"]
+bg_color = Color(0.370689, 0.598679, 0.9526, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.275916, 0.0266921, 2.40654e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgpyh"]
+bg_color = Color(0.275916, 0.0266921, 2.40654e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15sed"]
+bg_color = Color(0.0454523, 0.628338, 7.70092e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.275916, 0.0266921, 2.40654e-08, 1)
+
+[node name="Unit" type="Area2D"]
+script = ExtResource("1_15sed")
+stats = ExtResource("2_ladk0")
+metadata/_edit_group_ = true
+
+[node name="Visuals" type="CanvasGroup" parent="."]
+material = ExtResource("3_jbdwb")
+
+[node name="Skin" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+position = Vector2(16, 8)
+texture = ExtResource("1_hgpyh")
+region_enabled = true
+region_rect = Rect2(32, 96, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 8)
+shape = SubResource("RectangleShape2D_hgpyh")
+
+[node name="ManaBar" type="ProgressBar" parent="."]
+offset_left = 1.0
+offset_top = -15.0
+offset_right = 31.0
+offset_bottom = -11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ladk0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iuf4a")
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 1.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = -14.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hgpyh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_15sed")
+show_percentage = false
+
+[node name="DragAndDrop" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_iuf4a")
+target = NodePath("..")
+
+[node name="VelocityBasedRotation" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_ulevp")
+target = NodePath("../Visuals/Skin")
+
+[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("7_kakeo")
+visuals = NodePath("../Visuals")
+outline_color = Color(1, 1, 1, 0.494118)
+outline_thickness = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
