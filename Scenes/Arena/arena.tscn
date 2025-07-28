@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://xp0frbk4mp2m"]
+[gd_scene load_steps=15 format=4 uid="uid://xp0frbk4mp2m"]
 
 [ext_resource type="Script" uid="uid://bfsfpymx3vnfv" path="res://Scripts/arena.gd" id="1_6o3nl"]
 [ext_resource type="TileSet" uid="uid://c0ai4seynmo1l" path="res://Scenes/Arena/tileset.tres" id="1_b8w6q"]
@@ -9,8 +9,7 @@
 [ext_resource type="Script" uid="uid://85yro6e5oxrs" path="res://components/tile_highlighter.gd" id="5_qnyor"]
 [ext_resource type="Script" uid="uid://brl07ajtj6wf5" path="res://components/unit_mover.gd" id="8_fsjwy"]
 [ext_resource type="Script" uid="uid://bdhektjjpdpwi" path="res://components/unit_spawner.gd" id="9_0ibrr"]
-[ext_resource type="PackedScene" uid="uid://c6spxb5pdq7aq" path="res://Scenes/SellPoarta/sell_portal.tscn" id="10_vgwd8"]
-[ext_resource type="Resource" uid="uid://d2lwd8vhrf1hd" path="res://data/player/player_stats.tres" id="11_xt8pn"]
+[ext_resource type="PackedScene" uid="uid://c6spxb5pdq7aq" path="res://Scenes/SellPortal/sell_portal.tscn" id="10_vgwd8"]
 [ext_resource type="PackedScene" uid="uid://gjf3rdnnvnda" path="res://Scenes/Shop/shop.tscn" id="12_pa1tb"]
 
 [sub_resource type="Curve" id="Curve_fp5lk"]
@@ -135,11 +134,11 @@ game_area = NodePath("../GameArea")
 
 [node name="SellPortal" parent="." instance=ExtResource("10_vgwd8")]
 position = Vector2(64, 288)
-player_stats = ExtResource("11_xt8pn")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Shop" parent="UI" instance=ExtResource("12_pa1tb")]
+unique_name_in_owner = true
 offset_left = -128.0
 offset_top = 0.0
 offset_right = -12.0
