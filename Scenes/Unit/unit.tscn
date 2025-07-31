@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://3du40dybxgmb"]
+[gd_scene load_steps=15 format=3 uid="uid://3du40dybxgmb"]
 
 [ext_resource type="Script" uid="uid://dibr2uo1u2lnu" path="res://Scripts/unit.gd" id="1_15sed"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_hgpyh"]
 [ext_resource type="Resource" uid="uid://ce6lyd4ax8lvr" path="res://data/units/bjorn.tres" id="2_ladk0"]
 [ext_resource type="Material" uid="uid://bb8m5fhpi4wqn" path="res://assets/shaders/2d_outline_shader.tres" id="3_jbdwb"]
 [ext_resource type="Script" uid="uid://fqg1orciff4p" path="res://components/drag_and_drop.gd" id="4_iuf4a"]
+[ext_resource type="PackedScene" uid="uid://cjvrv7a5ipkne" path="res://Scenes/TierIcon/tier_icon.tscn" id="5_2itl1"]
 [ext_resource type="Script" uid="uid://bjuu7p0lc5hwx" path="res://components/velocity_based_rotation.gd" id="5_ulevp"]
 [ext_resource type="Script" uid="uid://7mo3sm2kl50p" path="res://components/outline_highlighter.gd" id="7_kakeo"]
+[ext_resource type="Script" uid="uid://dflemqfnfwpc0" path="res://components/unit_animations.gd" id="9_uodik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgpyh"]
 size = Vector2(36, 36)
@@ -70,6 +72,13 @@ theme_override_styles/background = SubResource("StyleBoxFlat_hgpyh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_15sed")
 show_percentage = false
 
+[node name="TierIcon" parent="." instance=ExtResource("5_2itl1")]
+offset_left = -1.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 1.0
+stats = ExtResource("2_ladk0")
+
 [node name="DragAndDrop" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("4_iuf4a")
 target = NodePath("..")
@@ -83,6 +92,11 @@ script = ExtResource("7_kakeo")
 visuals = NodePath("../Visuals")
 outline_color = Color(1, 1, 1, 0.494118)
 outline_thickness = 2
+
+[node name="UnitAnimations" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("9_uodik")
+unit = NodePath("..")
+metadata/_custom_type_script = "uid://dflemqfnfwpc0"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

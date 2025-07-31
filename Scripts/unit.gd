@@ -9,10 +9,12 @@ signal quick_sell_pressed
 @onready var skin: Sprite2D = %Skin
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var mana_bar: ProgressBar = $ManaBar
+@onready var tier_icon: TierIcon = $TierIcon
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var drag_and_drop: DragAndDrop = $DragAndDrop
 @onready var velocity_based_rotation: VelocityBasedRotation = $VelocityBasedRotation
 @onready var out_line_highlighter: OutlineHighlighter = $OutlineHighlighter
+@onready var animations: UnitAnimations = $UnitAnimations
 
 var is_hovered := false
 
@@ -39,7 +41,11 @@ func set_stats(value: UnitStats) -> void:
 	if not is_node_ready():
 		await ready
 
+	if not Engine.is_editor_hint():
+		stats = value.duplicate()
+
 	skin.region_rect.position = Vector2(stats.skin_coordinates) * Arena.CELL_SIZE
+	tier_icon.stats = stats
 
 func _on_drag_started() -> void:
 	velocity_based_rotation.enabled = true

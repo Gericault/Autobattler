@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://xp0frbk4mp2m"]
+[gd_scene load_steps=16 format=4 uid="uid://xp0frbk4mp2m"]
 
 [ext_resource type="Script" uid="uid://bfsfpymx3vnfv" path="res://Scripts/arena.gd" id="1_6o3nl"]
 [ext_resource type="TileSet" uid="uid://c0ai4seynmo1l" path="res://Scenes/Arena/tileset.tres" id="1_b8w6q"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://85yro6e5oxrs" path="res://components/tile_highlighter.gd" id="5_qnyor"]
 [ext_resource type="Script" uid="uid://brl07ajtj6wf5" path="res://components/unit_mover.gd" id="8_fsjwy"]
 [ext_resource type="Script" uid="uid://bdhektjjpdpwi" path="res://components/unit_spawner.gd" id="9_0ibrr"]
+[ext_resource type="Script" uid="uid://dereqqg54tlgb" path="res://components/unit_combiner.gd" id="10_pa1tb"]
 [ext_resource type="PackedScene" uid="uid://c6spxb5pdq7aq" path="res://Scenes/SellPortal/sell_portal.tscn" id="10_vgwd8"]
 [ext_resource type="PackedScene" uid="uid://gjf3rdnnvnda" path="res://Scenes/Shop/shop.tscn" id="12_pa1tb"]
 
@@ -36,7 +37,6 @@ color = Color(1, 1, 1, 0.482353)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_6o3nl")
-metadata/_edit_lock_ = true
 
 [node name="Visuals" type="Node2D" parent="."]
 metadata/_edit_group_ = true
@@ -131,6 +131,14 @@ play_areas = [NodePath("../GameArea"), NodePath("../Bench")]
 script = ExtResource("9_0ibrr")
 bench = NodePath("../Bench")
 game_area = NodePath("../GameArea")
+
+[node name="UnitCombiner" type="Node" parent="." node_paths=PackedStringArray("buffer_timer")]
+script = ExtResource("10_pa1tb")
+buffer_timer = NodePath("BufferTimer")
+metadata/_custom_type_script = "uid://dereqqg54tlgb"
+
+[node name="BufferTimer" type="Timer" parent="UnitCombiner"]
+one_shot = true
 
 [node name="SellPortal" parent="." instance=ExtResource("10_vgwd8")]
 position = Vector2(64, 288)
