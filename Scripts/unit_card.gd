@@ -7,6 +7,7 @@ const HOVER_BORDER_COLOR := Color("fafa82")
 
 @export var player_stats: PlayerStats
 @export var unit_stats: UnitStats : set = _set_unit_stats
+@export var buy_sound: AudioStream
 
 @onready var traits: Label = %Traits
 @onready var bottom: Panel = %Bottom
@@ -43,7 +44,7 @@ func _set_unit_stats(value: UnitStats) -> void:
 	unit_name.text = unit_stats.name
 	gold_cost.text = str(unit_stats.gold_cost)
 	unit_icon.texture.region.position = Vector2(unit_stats.skin_coordinates) * Arena.CELL_SIZE
-
+	traits.text = "\n".join(Trait.get_trait_names(unit_stats.traits))
 
 func _on_player_stats_changed() -> void:
 	if not unit_stats:
@@ -75,3 +76,4 @@ func _on_pressed() -> void:
 	empty_placeholder.show()
 	player_stats.gold -= unit_stats.gold_cost
 	unit_bought.emit(unit_stats)
+	SFXPlayer.play(buy_sound)

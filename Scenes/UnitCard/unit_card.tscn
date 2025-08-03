@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://n0jorbs7ch1k"]
+[gd_scene load_steps=13 format=3 uid="uid://n0jorbs7ch1k"]
 
 [ext_resource type="Script" uid="uid://b5p72hrkoxt2s" path="res://Scripts/unit_card.gd" id="1_dj0l7"]
 [ext_resource type="FontFile" uid="uid://8di0jvr25vat" path="res://assets/font/m5x7.ttf" id="1_nhf05"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://d2lwd8vhrf1hd" path="res://data/player/player_stats.tres" id="2_u0vdd"]
 [ext_resource type="Resource" uid="uid://ce6lyd4ax8lvr" path="res://data/units/bjorn.tres" id="3_fwc7y"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="3_tu5gd"]
+[ext_resource type="AudioStream" uid="uid://05sgyew2ynsi" path="res://assets/sfx/buy.ogg" id="4_f1w4f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u0vdd"]
 line_spacing = 0.0
@@ -41,6 +42,7 @@ focus_mode = 0
 script = ExtResource("1_dj0l7")
 player_stats = ExtResource("2_u0vdd")
 unit_stats = ExtResource("3_fwc7y")
+buy_sound = ExtResource("4_f1w4f")
 
 [node name="BackDrop" type="ColorRect" parent="."]
 layout_mode = 1

@@ -4,6 +4,7 @@ extends Button
 const REROLL_COST = 4
 
 @export var player_stats: PlayerStats
+@export var xp_sound: AudioStream
 
 @onready var vbox_container: VBoxContainer = $VBoxContainer
 
@@ -25,3 +26,4 @@ func _on_pressed() -> void:
     player_stats.gold -= REROLL_COST
     # xp gained is equal to reroll cost
     player_stats.xp += REROLL_COST
+    SFXPlayer.play(xp_sound)

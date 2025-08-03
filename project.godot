@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=120
 config/icon="uid://b48ddlwp6ebet"
 
+[autoload]
+
+MusicPlayer="*res://Scenes/AudioPlayer/music_player.tscn"
+SFXPlayer="*res://Scenes/AudioPlayer/SFX_player.tscn"
+
 [display]
 
 window/size/viewport_width=640
@@ -24,6 +29,10 @@ window/size/window_width_override=1300
 window/size/window_height_override=750
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[global_group]
+
+units=""
 
 [gui]
 
