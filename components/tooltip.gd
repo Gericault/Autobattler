@@ -1,23 +1,52 @@
 class_name Tooltip
 extends Node
+# This component displays the attached tooltip when mouseover after a delay
 
-@export var tool_tip_area: Area2D
-@export var tool_tip_icon: TextureRect
-# @export var tool_tip_data: TooltipData
+# to use; connect tooltip.show_tooltip() to on_area_entered signal
+# and connect hide.tooltip() on_area_exited
 
-# Icon on left if present
-# Header, sub-header
-# body of text
+#TODO global toggle for tooltips
+#consider hold key to activate
 
-# add this component, add a area2D to use as tooltip area
+#TODO keep tooltip in viewport OR have a tooltip pane
 
-# either edit in-editor OR add data resource to draw upon like a template
+@export var header: String
+@export var sub_header: String
+@export var text: String
+@export var icon: Texture
+@export var hover_area: CollisionShape2D
 
-#on mouse_entered and on_mouse_exited
+@onready var tooltip_body = %Body
+@onready var tooltip_header = %Header
+@onready var tooltip_sub_header = %SubHeader
+@onready var tooltip_icon = %Icon
+@onready var visuals = %Visuals
 
-# func on_mouse_entered
-# check if there is a tooltip, if yes return
-# draw a tooltip based on data
+var hovered: bool = false
+var offset
 
-# func on_mouse_exited
-# clear tooltip
+func _ready() -> void:
+	if not is_node_ready():
+		await ready
+	
+	#link export information to scene
+	tooltip_body.text = text
+	tooltip_header.text = header
+	tooltip_sub_header.text = sub_header
+	if icon:
+		tooltip_icon.texture = icon
+
+func _process(_delta: float) -> void:
+	if hovered:
+		visuals.global_position = visuals.get_global_mouse_position()
+		
+
+# connect showtooltip to area enter/exit signal
+
+func show_tooltip() -> void:
+	visuals.visible = true
+	hovered = true
+
+func hide_tooltip() -> void:
+	visuals.visible = false
+	hovered = false

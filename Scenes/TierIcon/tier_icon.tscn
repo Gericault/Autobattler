@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjvrv7a5ipkne"]
 
 [ext_resource type="Texture2D" uid="uid://cj1cl8jdui60n" path="res://assets/sprites/level1.png" id="1_m0dbo"]
-[ext_resource type="Script" uid="uid://bntmlgtryngk0" path="res://Scripts/tier_icon.gd" id="2_tgcrl"]
+[ext_resource type="Script" uid="uid://bntmlgtryngk0" path="res://Scenes/TierIcon/tier_icon.gd" id="2_tgcrl"]
 
 [node name="TierIcon" type="TextureRect"]
 custom_minimum_size = Vector2(10, 10)

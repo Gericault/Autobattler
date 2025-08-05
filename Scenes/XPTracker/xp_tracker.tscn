@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://7023qd4vmy45"]
 
 [ext_resource type="FontFile" uid="uid://8di0jvr25vat" path="res://assets/font/m5x7.ttf" id="1_6lk4i"]
-[ext_resource type="Script" uid="uid://bj05l4sx802gf" path="res://Scripts/xp_tracker.gd" id="1_eyca3"]
+[ext_resource type="Script" uid="uid://bj05l4sx802gf" path="res://Scenes/XPTracker/xp_tracker.gd" id="1_eyca3"]
 [ext_resource type="Resource" uid="uid://d2lwd8vhrf1hd" path="res://data/player/player_stats.tres" id="2_pyx13"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyca3"]

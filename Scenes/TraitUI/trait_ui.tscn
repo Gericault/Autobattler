@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ca2qc3k1btsh6"]
 
 [ext_resource type="FontFile" uid="uid://8di0jvr25vat" path="res://assets/font/m5x7.ttf" id="1_l5b5d"]
-[ext_resource type="Script" uid="uid://cex5gqdcjhm1e" path="res://Scripts/trait_ui.gd" id="1_r712m"]
+[ext_resource type="Script" uid="uid://cex5gqdcjhm1e" path="res://Scenes/TraitUI/trait_ui.gd" id="1_r712m"]
 [ext_resource type="Texture2D" uid="uid://l1jq47dgo2n1" path="res://assets/sprites/trait_background.png" id="1_ycxhn"]
 [ext_resource type="Texture2D" uid="uid://b1aup08or8bao" path="res://assets/sprites/traits/elf.png" id="2_pst0o"]
 

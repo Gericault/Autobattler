@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6spxb5pdq7aq"]
+[gd_scene load_steps=12 format=3 uid="uid://c6spxb5pdq7aq"]
 
-[ext_resource type="Script" uid="uid://br8sj3k0ydnjl" path="res://Scripts/sell_portal.gd" id="1_ary0n"]
+[ext_resource type="Script" uid="uid://br8sj3k0ydnjl" path="res://Scenes/SellPortal/sell_portal.gd" id="1_ary0n"]
 [ext_resource type="Material" uid="uid://bb8m5fhpi4wqn" path="res://assets/shaders/2d_outline_shader.tres" id="1_nmuvn"]
 [ext_resource type="Texture2D" uid="uid://b1ro1ssup7dcp" path="res://assets/sprites/tiles.png" id="2_bu61t"]
 [ext_resource type="Resource" uid="uid://d2lwd8vhrf1hd" path="res://data/player/player_stats.tres" id="2_w65c3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://63cliemji516" path="res://data/unit_pool/unit_pool.tres" id="3_hiffm"]
 [ext_resource type="Texture2D" uid="uid://c4awhqfup7o2k" path="res://assets/sprites/gold.png" id="4_bu61t"]
 [ext_resource type="AudioStream" uid="uid://p1b7rsqtf0cc" path="res://assets/sfx/sell.ogg" id="4_hiffm"]
+[ext_resource type="PackedScene" uid="uid://b4mev0qpgug0q" path="res://Scenes/Tooltip/tooltip.tscn" id="9_54pia"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j818f"]
 radius = 24.0
@@ -71,6 +72,13 @@ layout_mode = 2
 texture = ExtResource("4_bu61t")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Tooltip" parent="." node_paths=PackedStringArray("hover_area") instance=ExtResource("9_54pia")]
+header = "Sell Area"
+sub_header = "1"
+text = "Drag units on here to sell them. For the first 5 turns selling returns 1:1 cost price"
+icon = null
+hover_area = NodePath("../CollisionShape2D")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

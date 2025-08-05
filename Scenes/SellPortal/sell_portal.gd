@@ -8,6 +8,7 @@ extends Area2D
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
 @onready var gold: HBoxContainer = %Gold
 @onready var gold_label: Label = %GoldLabel
+@onready var tooltip: Tooltip = $Tooltip
 
 var current_unit: Unit
 
@@ -32,6 +33,7 @@ func _on_unit_dropped(_starting_position: Vector2, unit: Unit) -> void:
 		_sell_unit(current_unit)
 
 func _on_area_exited(unit: Unit) -> void:
+	tooltip.hide_tooltip()
 	if unit and unit == current_unit:
 		current_unit = null
 	
@@ -39,6 +41,7 @@ func _on_area_exited(unit: Unit) -> void:
 	gold.hide()
 
 func _on_area_entered(unit: Unit) -> void:
+	tooltip.show_tooltip()
 	current_unit = unit
 	outline_highlighter.highlight()
 	gold_label.text = str(unit.stats._get_gold_value())
