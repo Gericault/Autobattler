@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://55bs1ldsyvhk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ladk0"]
+bg_color = Color(0.275916, 0.0266921, 2.40654e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuf4a"]
+bg_color = Color(0.370689, 0.598679, 0.9526, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.275916, 0.0266921, 2.40654e-08, 1)
+
+[node name="ManaBar" type="ProgressBar"]
+z_index = 1
+offset_left = 1.0
+offset_top = -15.0
+offset_right = 31.0
+offset_bottom = -11.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ladk0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iuf4a")
+show_percentage = false

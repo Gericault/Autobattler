@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctsxd2hqekt7m"]
+[gd_scene load_steps=4 format=3 uid="uid://ctsxd2hqekt7m"]
 
 [ext_resource type="PackedScene" uid="uid://ca2qc3k1btsh6" path="res://Scenes/TraitUI/trait_ui.tscn" id="1_ju5f3"]
 [ext_resource type="Script" uid="uid://bj2qlncty3y7m" path="res://Scenes/Traits/traits.gd" id="1_n1fva"]
+[ext_resource type="Script" uid="uid://botqlon6yqk3m" path="res://components/scene_spawner.gd" id="3_0odh6"]
 
 [node name="Traits" type="Control"]
 layout_mode = 3
@@ -30,3 +31,8 @@ layout_mode = 2
 
 [node name="TraitUI5" parent="TraitContainer" instance=ExtResource("1_ju5f3")]
 layout_mode = 2
+
+[node name="SceneSpawner" type="Node" parent="."]
+script = ExtResource("3_0odh6")
+scene = ExtResource("1_ju5f3")
+metadata/_custom_type_script = "uid://botqlon6yqk3m"

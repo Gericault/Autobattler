@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=5 format=3 uid="uid://cavjpff3jd8ah"]
+
+[ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_3chjb"]
+[ext_resource type="Script" uid="uid://iopph0imn1rk" path="res://data/Traits/trait.gd" id="2_ls4fb"]
+[ext_resource type="Resource" uid="uid://dn6snaao3uts1" path="res://data/Traits/elf.tres" id="3_dcf4s"]
+[ext_resource type="Resource" uid="uid://bm6l38s85sf2u" path="res://data/Traits/fighter.tres" id="4_im3nl"]
+
+[resource]
+script = ExtResource("1_3chjb")
+name = "Lancer"
+rarity = 1
+gold_cost = 2
+tier = 1
+traits = Array[ExtResource("2_ls4fb")]([ExtResource("3_dcf4s"), ExtResource("4_im3nl")])
+pool_count = 5
+skin_coordinates = Vector2i(4, 1)
+metadata/_custom_type_script = "uid://bv4ydxsmt4q1"
