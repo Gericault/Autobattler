@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=5 format=3 uid="uid://ce6lyd4ax8lvr"]
 
 [ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_d6p4t"]
-[ext_resource type="Script" uid="uid://iopph0imn1rk" path="res://data/Traits/trait.gd" id="2_shr7q"]
-[ext_resource type="Resource" uid="uid://ch0rwo3rpxqho" path="res://data/Traits/human.tres" id="3_f8bbe"]
-[ext_resource type="Resource" uid="uid://bm6l38s85sf2u" path="res://data/Traits/fighter.tres" id="4_vqcxw"]
+[ext_resource type="Script" uid="uid://iopph0imn1rk" path="res://data/traits/trait.gd" id="2_shr7q"]
+[ext_resource type="Resource" uid="uid://ch0rwo3rpxqho" path="res://data/traits/human.tres" id="3_f8bbe"]
+[ext_resource type="Resource" uid="uid://bm6l38s85sf2u" path="res://data/traits/fighter.tres" id="4_vqcxw"]
 
 [resource]
 script = ExtResource("1_d6p4t")
@@ -14,4 +14,5 @@ tier = 1
 traits = Array[ExtResource("2_shr7q")]([ExtResource("3_f8bbe"), ExtResource("4_vqcxw")])
 pool_count = 5
 skin_coordinates = Vector2i(1, 3)
+team = 0
 metadata/_custom_type_script = "uid://bv4ydxsmt4q1"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://b73ig5hqgtwsj"]
+
+[ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_uf3tg"]
+[ext_resource type="Script" uid="uid://iopph0imn1rk" path="res://data/traits/trait.gd" id="2_tb4o6"]
+
+[resource]
+script = ExtResource("1_uf3tg")
+name = ""
+rarity = 0
+gold_cost = 1
+tier = 1
+traits = Array[ExtResource("2_tb4o6")]([])
+pool_count = 5
+skin_coordinates = Vector2i(1, 0)
+team = 1
+metadata/_custom_type_script = "uid://bv4ydxsmt4q1"

@@ -18,8 +18,8 @@ config/icon="uid://b48ddlwp6ebet"
 
 [autoload]
 
-MusicPlayer="*res://Scenes/AudioPlayer/music_player.tscn"
-SFXPlayer="*res://Scenes/AudioPlayer/SFX_player.tscn"
+MusicPlayer="*res://scenes/audio_player/music_player.tscn"
+SFXPlayer="*res://scenes/audio_player/SFX_player.tscn"
 
 [display]
 
