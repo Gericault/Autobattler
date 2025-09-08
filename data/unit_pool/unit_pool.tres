@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="UnitPool" load_steps=5 format=3 uid="uid://63cliemji516"]
+[gd_resource type="Resource" script_class="UnitPool" load_steps=7 format=3 uid="uid://63cliemji516"]
 
 [ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_mc54o"]
 [ext_resource type="Resource" uid="uid://ce6lyd4ax8lvr" path="res://data/units/bjorn.tres" id="2_1aqrh"]
 [ext_resource type="Resource" uid="uid://cavjpff3jd8ah" path="res://data/units/Lancer.tres" id="3_1aqrh"]
 [ext_resource type="Script" uid="uid://b33fppjusuhpo" path="res://data/unit_pool/unit_pool.gd" id="3_qbk8p"]
+[ext_resource type="Resource" uid="uid://c2253t55swb1p" path="res://data/units/Hercules.tres" id="4_l4vv1"]
+[ext_resource type="Resource" uid="uid://cwcl53i3rd5l6" path="res://data/units/Freja.tres" id="5_2sl0h"]
 
 [resource]
 script = ExtResource("3_qbk8p")
-available_units = Array[ExtResource("1_mc54o")]([ExtResource("2_1aqrh"), ExtResource("3_1aqrh")])
+available_units = Array[ExtResource("1_mc54o")]([ExtResource("2_1aqrh"), ExtResource("3_1aqrh"), ExtResource("4_l4vv1"), ExtResource("5_2sl0h")])
 metadata/_custom_type_script = "uid://b33fppjusuhpo"

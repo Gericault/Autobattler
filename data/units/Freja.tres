@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=4 format=3 uid="uid://cwcl53i3rd5l6"]
+
+[ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_6yk4i"]
+[ext_resource type="Script" uid="uid://iopph0imn1rk" path="res://data/traits/trait.gd" id="2_o20c8"]
+[ext_resource type="Resource" uid="uid://bm6l38s85sf2u" path="res://data/traits/fighter.tres" id="3_o20c8"]
+
+[resource]
+script = ExtResource("1_6yk4i")
+name = "Freja"
+rarity = 3
+gold_cost = 5
+tier = 1
+traits = Array[ExtResource("2_o20c8")]([ExtResource("3_o20c8")])
+pool_count = 5
+skin_coordinates = Vector2i(2, 3)
+team = 0
+metadata/_custom_type_script = "uid://bv4ydxsmt4q1"

@@ -20,6 +20,7 @@ config/icon="uid://b48ddlwp6ebet"
 
 MusicPlayer="*res://scenes/audio_player/music_player.tscn"
 SFXPlayer="*res://scenes/audio_player/SFX_player.tscn"
+UnitNavigation="*res://scripts/unit_navigation.gd"
 
 [display]
 

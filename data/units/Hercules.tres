@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=4 format=3 uid="uid://c2253t55swb1p"]
+
+[ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_46xu2"]
+[ext_resource type="Script" uid="uid://iopph0imn1rk" path="res://data/traits/trait.gd" id="2_pajol"]
+[ext_resource type="Resource" uid="uid://bm6l38s85sf2u" path="res://data/traits/fighter.tres" id="3_pajol"]
+
+[resource]
+script = ExtResource("1_46xu2")
+name = "Hercules"
+rarity = 2
+gold_cost = 3
+tier = 1
+traits = Array[ExtResource("2_pajol")]([ExtResource("3_pajol")])
+pool_count = 5
+skin_coordinates = Vector2i(0, 3)
+team = 0
+metadata/_custom_type_script = "uid://bv4ydxsmt4q1"

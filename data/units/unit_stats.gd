@@ -7,7 +7,7 @@ enum Team {PLAYER, ENEMY,}
 const RARITY_COLOURS := {
     Rarity.COMMON: Color("5a5a5a"),
     Rarity.UNCOMMON: Color("1c527c"),
-    Rarity.RARE: Color("3b80d9"),
+    Rarity.RARE: Color("993263"),
     Rarity.EPIC: Color("ff6f00"),
 }
 

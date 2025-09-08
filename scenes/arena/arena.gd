@@ -7,11 +7,16 @@ const QUARTER_CELL_SIZE := Vector2(8, 8)
 
 @export var arena_music_stream: AudioStream
 
+@onready var game_area: PlayArea = $GameArea
+@onready var battle_grid: UnitGrid = $GameArea/BattleUnitGrid
+
 @onready var unit_mover: UnitMover = $UnitMover
 @onready var unit_spawner: UnitSpawner = $UnitSpawner
 @onready var sell_portal: SellPortal = $SellPortal
 @onready var unit_combiner : UnitCombiner = $UnitCombiner
 @onready var shop: Shop = %Shop
+
+
 
 #plug in unit spawned and connect it to drag and drop component
 func _ready() -> void:
@@ -20,3 +25,4 @@ func _ready() -> void:
 	shop.unit_bought.connect(unit_spawner.spawn_unit)
 	unit_spawner.unit_spawned.connect(unit_combiner.queue_unit_combination_update.unbind(1))
 	MusicPlayer.play(arena_music_stream)
+	UnitNavigation.initialize(battle_grid, game_area)
