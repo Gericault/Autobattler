@@ -1,6 +1,8 @@
 class_name UnitStats
 extends Resource
 
+const MOVE_ONE_TILE_SPEED := 1.0
+
 enum Rarity {COMMON, UNCOMMON, RARE, EPIC,}
 enum Team {PLAYER, ENEMY,}
 

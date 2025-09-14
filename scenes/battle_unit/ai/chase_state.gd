@@ -35,10 +35,20 @@ func chase() -> void:
     tween = actor_unit.create_tween()
     tween.tween_callback(actor_unit.animation_player.play.bind("move"))
     tween.tween_property(actor_unit, "global_position", new_pos, UnitStats.MOVE_ONE_TILE_SPEED)
+    tween.finished.connect(
+        func():
+            tween.kill()
 
+            if _has_target_in_range():
+                _end_chase()
+            else:
+                chase()
+    )
 
 func _has_target_in_range():
-    pass
+    # if there is a unit within 35 units MAGIC NUMBER PLACEHOLDER (range, melee etc etc)
+    return (target.global_position-actor_unit.global_position).length() <= 35.0
 
 func _end_chase():
-    pass
+    target_reached.emit(target)
+    
