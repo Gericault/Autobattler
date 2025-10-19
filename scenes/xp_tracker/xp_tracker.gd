@@ -12,7 +12,7 @@ func _ready() -> void:
     _on_player_stats_changed()
 
 func _on_player_stats_changed() -> void:
-    if player_stats.level < player_stats.MAX_LEVEL:
+    if not player_stats.is_max_level():
         _set_xp_bar_values()
     else:
         _set_max_level_values()

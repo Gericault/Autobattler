@@ -1,15 +1,23 @@
-[gd_scene load_steps=15 format=3 uid="uid://7qh0hfyd5412"]
+[gd_scene load_steps=21 format=3 uid="uid://7qh0hfyd5412"]
 
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_rimmb"]
 [ext_resource type="Script" uid="uid://bq47e2h843d0w" path="res://scenes/battle_unit/battle_unit.gd" id="1_ypo87"]
 [ext_resource type="Script" uid="uid://cr0wgmp061fi4" path="res://components/packed_sprite2d.gd" id="2_ypo87"]
 [ext_resource type="PackedScene" uid="uid://c3n66p3y8knbx" path="res://scenes/health_bar/health_bar.tscn" id="3_jwvv0"]
+[ext_resource type="Script" uid="uid://bew1fcdhlkqpr" path="res://scripts/detect_range.gd" id="4_hf5vq"]
 [ext_resource type="PackedScene" uid="uid://55bs1ldsyvhk" path="res://scenes/mana_bar/mana_bar.tscn" id="4_ofgtq"]
+[ext_resource type="Script" uid="uid://mduxgmkaxmqd" path="res://components/hurt_box.gd" id="4_u0yfu"]
 [ext_resource type="PackedScene" uid="uid://cjvrv7a5ipkne" path="res://scenes/tier_icon/tier_icon.tscn" id="5_ye0a6"]
-[ext_resource type="Script" uid="uid://d4ha31u4e6xo1" path="res://components/finite_state_machine.gd" id="7_4s270"]
 [ext_resource type="Script" uid="uid://b1ijmd684ry7j" path="res://scenes/battle_unit/ai/unit_ai.gd" id="8_u0yfu"]
+[ext_resource type="Script" uid="uid://ld8w10x2y1qa" path="res://scripts/target_finder.gd" id="9_1myfu"]
+[ext_resource type="Script" uid="uid://cs8onagbccevb" path="res://components/flip_sprite.gd" id="11_nmiut"]
+[ext_resource type="Script" uid="uid://nqakxd3tot6a" path="res://components/unit_basic_attack.gd" id="12_euuyt"]
+[ext_resource type="Script" uid="uid://botqlon6yqk3m" path="res://components/scene_spawner.gd" id="13_gou7k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mejfm"]
+size = Vector2(36, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf5vq"]
 size = Vector2(36, 36)
 
 [sub_resource type="Animation" id="Animation_ypo87"]
@@ -172,6 +180,8 @@ _data = {
 }
 
 [node name="BattleUnit" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_ypo87")
 
 [node name="Skin" type="Sprite2D" parent="."]
@@ -184,6 +194,23 @@ metadata/_custom_type_script = "uid://cr0wgmp061fi4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mejfm")
+
+[node name="DetectRange" type="Area2D" parent="." node_paths=PackedStringArray("col_shape")]
+script = ExtResource("4_hf5vq")
+col_shape = NodePath("CollisionShape2D")
+base_range_size = 36.0
+metadata/_custom_type_script = "uid://bew1fcdhlkqpr"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRange"]
+debug_color = Color(0.67132014, 0.33725774, 0.95238, 0.41960785)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("4_u0yfu")
+metadata/_custom_type_script = "uid://mduxgmkaxmqd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_hf5vq")
+debug_color = Color(0.8309246, 0, 0.15987393, 0.41960785)
 
 [node name="HealthBar" parent="." instance=ExtResource("3_jwvv0")]
 offset_left = -15.0
@@ -215,18 +242,43 @@ offset_bottom = -30.0
 grow_horizontal = 2
 horizontal_alignment = 1
 
-[node name="UnitAI" type="Node" parent="." node_paths=PackedStringArray("actor", "fsm")]
-script = ExtResource("8_u0yfu")
+[node name="AttackTimer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="TargetFinder" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("9_1myfu")
 actor = NodePath("..")
-fsm = NodePath("../FiniteStateMachine")
+metadata/_custom_type_script = "uid://ld8w10x2y1qa"
+
+[node name="UnitAI" type="Node" parent="." node_paths=PackedStringArray("debug_label", "actor")]
+script = ExtResource("8_u0yfu")
+debug_label = NodePath("../FSMDebugLabel")
+actor = NodePath("..")
 metadata/_custom_type_script = "uid://b1ijmd684ry7j"
 
-[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_label")]
-script = ExtResource("7_4s270")
-debug_label = NodePath("../FSMDebugLabel")
-metadata/_custom_type_script = "uid://d4ha31u4e6xo1"
+[node name="FlipSprite" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("11_nmiut")
+sprite = NodePath("../Skin")
+metadata/_custom_type_script = "uid://cs8onagbccevb"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ypo87")
 }
+
+[node name="AttackAnchor" type="Node2D" parent="."]
+
+[node name="AttackMarker" type="Marker2D" parent="AttackAnchor"]
+position = Vector2(16, 0)
+
+[node name="MeleeAttack" type="Node" parent="." node_paths=PackedStringArray("parent", "anchor", "spawn_point", "spawner")]
+script = ExtResource("12_euuyt")
+parent = NodePath("..")
+anchor = NodePath("../AttackAnchor")
+spawn_point = NodePath("../AttackAnchor/AttackMarker")
+spawner = NodePath("MeleeAttackSpawner")
+metadata/_custom_type_script = "uid://nqakxd3tot6a"
+
+[node name="MeleeAttackSpawner" type="Node" parent="MeleeAttack"]
+script = ExtResource("13_gou7k")
+metadata/_custom_type_script = "uid://botqlon6yqk3m"

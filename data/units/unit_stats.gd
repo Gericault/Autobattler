@@ -2,20 +2,31 @@ class_name UnitStats
 extends Resource
 
 const MOVE_ONE_TILE_SPEED := 1.0
+const MAX_ATTACK_RANGE := 5
+const MANA_PER_ATTACK := 10
+
+
+signal health_reached_zero
+signal mana_bar_filled
 
 enum Rarity {COMMON, UNCOMMON, RARE, EPIC,}
 enum Team {PLAYER, ENEMY,}
 
+const TARGET := {
+	Team.PLAYER: "enemy_units",
+	Team.ENEMY: "player_units"
+}
+
 const RARITY_COLOURS := {
-    Rarity.COMMON: Color("5a5a5a"),
-    Rarity.UNCOMMON: Color("1c527c"),
-    Rarity.RARE: Color("993263"),
-    Rarity.EPIC: Color("ff6f00"),
+	Rarity.COMMON: Color("5a5a5a"),
+	Rarity.UNCOMMON: Color("1c527c"),
+	Rarity.RARE: Color("993263"),
+	Rarity.EPIC: Color("ff6f00"),
 }
 
 const TEAM_SPRITESHEET := {
-    Team.PLAYER: preload("res://assets/sprites/rogues.png"),
-    Team.ENEMY: preload("res://assets/sprites/monsters.png"),
+	Team.PLAYER: preload("res://assets/sprites/rogues.png"),
+	Team.ENEMY: preload("res://assets/sprites/monsters.png"),
 }
 
 @export var name: String
@@ -33,19 +44,69 @@ const TEAM_SPRITESHEET := {
 
 @export_category("Battle")
 @export var team: Team
+@export var max_health: Array[int]
+@export var max_mana: int
+@export var starting_mana: int
+@export var attack_damage: Array[int]
+@export var ability_power: int
+@export var attack_speed: float
+@export var armour: int
+@export var magic_resist: int
+@export_range(1, MAX_ATTACK_RANGE) var attack_range: int = 1
+@export var melee_attack: PackedScene = preload("res://scenes/_effects/attack_smear_effect.tscn")
+@export var ranged_attack: PackedScene
+@export var ability: PackedScene
+@export var auto_attack_sound: AudioStream
+
+var health: int : set = _set_health
+var mana: int: set = _set_mana
+
+func reset_health() -> void:
+	health = get_max_health()
+
+func reset_mana() -> void:
+	mana = starting_mana
+
+
+func get_max_health() -> int:
+	return max_health[tier-1]
+
+func get_attack_damange() -> int:
+	return attack_damage[tier-1]
+
+func get_time_between_attacks() -> float:
+	return 1 / attack_speed
+
+func is_melee() -> bool:
+	return attack_range == 1
+
+func _set_health(value: int) -> void:
+	health = value
+	emit_changed()
+
+	if health <= 0:
+		health_reached_zero.emit()
+
+func _set_mana(value:int) -> void:
+	mana = value
+	emit_changed()
+
+	if mana >= max_mana and max_mana > 0:
+		mana_bar_filled.emit()
+
 
 # sell cost is 1:1; 3 units to combine to the power of tier - 1
 # ie tier 1 (no combine) is 0. tier 2 is to the power of 1 (3x3)
 # and so on
 func _get_combined_unit_count() -> int:
-    return 3 **(tier-1)
+	return 3 **(tier-1)
 
 func _get_gold_value() -> int:
-    return gold_cost * _get_combined_unit_count()
+	return gold_cost * _get_combined_unit_count()
 
 func _set_tier(value: int) -> void:
-    tier = value
-    emit_changed()
+	tier = value
+	emit_changed()
 
 func _to_string() -> String:
-    return name
+	return name

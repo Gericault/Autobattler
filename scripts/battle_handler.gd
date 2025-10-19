@@ -30,6 +30,8 @@ func get_enemy_encounter() -> Array:
 	return enemy_encounter
 
 func _setup_battle_unit(unit_coord: Vector2i, new_unit: BattleUnit) -> void:
+	new_unit.stats.reset_health()
+	new_unit.stats.reset_mana()
 	new_unit.global_position = game_area.get_global_from_tile(unit_coord) + Vector2(0, -Arena.QUARTER_CELL_SIZE.y)
 	new_unit.tree_exited.connect(on_battle_unit_died)
 	battle_unit_grid.add_unit(unit_coord, new_unit)
@@ -73,6 +75,13 @@ func _prepare_fight() -> void:
 		# spawning from enemy pool so below is redundant
 		# new_unit.stats.team = UnitStats.Team.ENEMY
 		_setup_battle_unit(unit_coord, new_unit)
+
+	UnitNavigation.update_occupied_tiles()
+	var battle_units := get_tree().get_nodes_in_group("player_units") + get_tree().get_nodes_in_group("enemy_units")
+	battle_units.shuffle()
+
+	for battle_unit: BattleUnit in battle_units:
+		battle_unit.unit_ai.enabled = true
 
 
 func _on_game_state_changed() -> void:

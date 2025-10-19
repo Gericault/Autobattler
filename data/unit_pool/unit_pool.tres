@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bv4ydxsmt4q1" path="res://data/units/unit_stats.gd" id="1_mc54o"]
 [ext_resource type="Resource" uid="uid://ce6lyd4ax8lvr" path="res://data/units/bjorn.tres" id="2_1aqrh"]
-[ext_resource type="Resource" uid="uid://cavjpff3jd8ah" path="res://data/units/Lancer.tres" id="3_1aqrh"]
+[ext_resource type="Resource" uid="uid://cavjpff3jd8ah" path="res://data/units/lancer.tres" id="3_1aqrh"]
 [ext_resource type="Script" uid="uid://b33fppjusuhpo" path="res://data/unit_pool/unit_pool.gd" id="3_qbk8p"]
-[ext_resource type="Resource" uid="uid://c2253t55swb1p" path="res://data/units/Hercules.tres" id="4_l4vv1"]
-[ext_resource type="Resource" uid="uid://cwcl53i3rd5l6" path="res://data/units/Freja.tres" id="5_2sl0h"]
+[ext_resource type="Resource" uid="uid://c2253t55swb1p" path="res://data/units/hercules.tres" id="4_l4vv1"]
+[ext_resource type="Resource" uid="uid://cwcl53i3rd5l6" path="res://data/units/freja.tres" id="5_2sl0h"]
 
 [resource]
 script = ExtResource("3_qbk8p")

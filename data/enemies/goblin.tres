@@ -6,11 +6,9 @@
 [resource]
 script = ExtResource("1_dk6at")
 name = "Goblin"
-rarity = 0
-gold_cost = 1
-tier = 1
-traits = Array[ExtResource("2_k871p")]([])
-pool_count = 5
 skin_coordinates = Vector2i(0, 3)
 team = 1
+max_health = Array[int]([18, 22, 25])
+attack_damage = Array[int]([2, 4, 6])
+attack_speed = 0.7
 metadata/_custom_type_script = "uid://bv4ydxsmt4q1"
